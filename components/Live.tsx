@@ -22,7 +22,7 @@ const Live = () => {
   const broadcast = useBroadcastEvent();
 
   useInterval(() => {
-    setReaction((reactions) => reactions.filter((r) => r.timestamp > Date.now() - 4000));
+    setReaction((reactions) => reactions.filter((r) => r.timestamp > Date.now() - 3000));
   }, 1000)
 
   useInterval(() => {
