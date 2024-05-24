@@ -17,8 +17,8 @@ const Navbar = ({
   
 
   return (
-    <nav className="flex select-none items-center justify-between gap-4 bg-primary-black px-5 text-white h-20">
-      <Image src="/assets/logo.svg" alt="Figgi Logo" width={58} height={20} />
+    <nav className="flex select-none items-center justify-between gap-4 bg-primary-black px-5 text-white max-h-[200px]">
+      <Image src="/assets/logo.svg" alt="Figgi Logo" width={100} height={50} />
       <ActiveUsers />
     </nav>
   );

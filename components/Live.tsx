@@ -12,7 +12,11 @@ import ReactionSelector from "./reaction/ReactionButton";
 import FlyingReaction from "./reaction/FylingReaction";
 import useInterval from "@/hooks/useInterval";
 
-const Live = () => {
+type Props = {
+  canvasRef: React.MutableRefObject<HTMLCanvasElement>;
+};
+
+const Live = ({ canvasRef }: Props) => {
   const others = useOthers();
   const [{ cursor }, updateMyPresence] = useMyPresence() as any;
   const [cursorState, setCursorState] = useState<CursorState>({
@@ -22,8 +26,10 @@ const Live = () => {
   const broadcast = useBroadcastEvent();
 
   useInterval(() => {
-    setReaction((reactions) => reactions.filter((r) => r.timestamp > Date.now() - 3000));
-  }, 1000)
+    setReaction((reactions) =>
+      reactions.filter((r) => r.timestamp > Date.now() - 3000)
+    );
+  }, 1000);
 
   useInterval(() => {
     if (
@@ -149,13 +155,14 @@ const Live = () => {
 
   return (
     <div
+      id="canvas"
       onPointerMove={handlePointerMove}
       onPointerDown={handlePointerDown}
       onPointerLeave={handlePointerLeave}
       onPointerUp={handlePointerUp}
       className="h-[100vh] w-full flex justify-center items-center text-center"
     >
-      <h1 className="font-2xl text-white">Yelloww</h1>
+      <canvas ref={canvasRef} />
 
       {reaction.map((r) => (
         <FlyingReaction
